@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Language Detection AI</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root{
+    --primary:#6366f1;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:
+    radial-gradient(circle at top,#1f1f3d 0%,#0a0a16 100%);
+    color:white;
+    overflow-x:hidden;
+    min-height:100vh;
+}
+
+.stars{
+    position:fixed;
+    inset:0;
+    background:url('https://picsum.photos/id/1015/1920/1080') center/cover;
+    opacity:.12;
+    z-index:-3;
+}
+
+.nebula{
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle at 20% 20%,rgba(99,102,241,.25),transparent 40%),
+    radial-gradient(circle at 80% 70%,rgba(168,85,247,.25),transparent 40%);
+    z-index:-2;
+}
+
+.title{
+    font-family:'Space Grotesk',sans-serif;
+
+    background:linear-gradient(
+    90deg,
+    #a5b4fc,
+    #c4b5fd,
+    #67e8f9,
+    #ffffff
+    );
+
+    background-size:300% auto;
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    animation:
+    gradientMove 6s linear infinite,
+    glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes gradientMove{
+    0%{background-position:0% center;}
+    100%{background-position:300% center;}
+}
+
+@keyframes glow{
+    from{
+        text-shadow:
+        0 0 20px rgba(165,180,252,.7),
+        0 0 40px rgba(167,139,250,.5);
+    }
+
+    to{
+        text-shadow:
+        0 0 30px rgba(165,180,252,.9),
+        0 0 70px rgba(167,139,250,.9),
+        0 0 100px rgba(103,232,249,.8);
+    }
+}
+
+.card{
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    backdrop-filter:blur(14px);
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.3);
+}
+
+.lang-card{
+    position:relative;
+    overflow:hidden;
+    cursor:pointer;
+    background:rgba(255,255,255,.05);
+    border-radius:24px;
+    transition:all .45s ease;
+    transform-style:preserve-3d;
+    animation:floatCard 5s ease-in-out infinite;
+}
+
+.lang-card::before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    border-radius:24px;
+    padding:2px;
+
+    background:linear-gradient(
+    135deg,
+    #6366f1,
+    #a855f7,
+    #06b6d4,
+    #6366f1
+    );
+
+    background-size:300% 300%;
+    animation:borderMove 6s linear infinite;
+
+    -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite:xor;
+    mask-composite:exclude;
+}
+
+.lang-card::after{
+    content:"";
+    position:absolute;
+
+    width:180px;
+    height:180px;
+
+    background:
+    radial-gradient(circle,
+    rgba(255,255,255,.25),
+    transparent 70%);
+
+    top:var(--y);
+    left:var(--x);
+
+    transform:translate(-50%,-50%);
+    opacity:0;
+    transition:opacity .3s ease;
+    pointer-events:none;
+}
+
+.lang-card:hover::after{
+    opacity:1;
+}
+
+.lang-card:hover{
+    transform:
+    perspective(1000px)
+    rotateX(8deg)
+    rotateY(-8deg)
+    translateY(-10px)
+    scale(1.06);
+
+    box-shadow:
+    0 0 20px rgba(99,102,241,.5),
+    0 0 40px rgba(168,85,247,.4),
+    0 25px 40px rgba(0,0,0,.4);
+}
+
+@keyframes borderMove{
+    0%{
+        background-position:0% 50%;
+    }
+
+    100%{
+        background-position:300% 50%;
+    }
+}
+
+@keyframes floatCard{
+    0%,100%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-6px);
+    }
+}
+
+.input-box{
+    background:rgba(15,23,42,.75);
+    border:1px solid rgba(165,180,252,.25);
+    transition:.3s;
+}
+
+.input-box:focus{
+    border-color:#818cf8;
+
+    box-shadow:
+    0 0 0 4px rgba(99,102,241,.15),
+    0 0 25px rgba(99,102,241,.3);
+}
+
+.btn-detect{
+    background:
+    linear-gradient(
+    90deg,
+    #6366f1,
+    #a855f7,
+    #06b6d4
+    );
+
+    background-size:300% auto;
+    transition:.4s ease;
+    animation:gradientMove 5s linear infinite;
+}
+
+.btn-detect:hover{
+    transform:
+    translateY(-4px)
+    scale(1.01);
+
+    box-shadow:
+    0 10px 25px rgba(99,102,241,.45);
+}
+
+.shooting-star{
+    position:absolute;
+    width:4px;
+    height:2px;
+
+    background:
+    linear-gradient(
+    90deg,
+    transparent,
+    #e0bbff,
+    transparent
+    );
+
+    animation:shoot 8s linear infinite;
+}
+
+@keyframes shoot{
+    0%{
+        transform:
+        translateX(-100px)
+        translateY(-100px);
+        opacity:0;
+    }
+
+    10%{
+        opacity:1;
+    }
+
+    90%{
+        opacity:1;
+    }
+
+    100%{
+        transform:
+        translateX(900px)
+        translateY(400px);
+        opacity:0;
+    }
+}
+
+@media(max-width:1024px){
+
+.sidebar{
+display:none;
+}
+
+.main-content{
+margin-left:0;
+}
+
+.title{
+font-size:3rem !important;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+<div class="nebula"></div>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar fixed left-0 top-0 h-full w-72 bg-[#0f172a]/95 border-r border-white/10 p-6 flex flex-col z-50">
+
+<div class="flex items-center gap-3 mb-10">
+
+<div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center">
+<i class="fa-solid fa-globe text-white text-2xl"></i>
+</div>
+
+<div>
+<span class="text-xl font-bold">LANGUAGE</span>
+<span class="text-xl font-bold text-indigo-400">DETECTION</span>
+</div>
+
+</div>
+
+<nav class="space-y-2">
+
+<a href="#" class="flex items-center gap-3 px-4 py-3 bg-indigo-600/20 rounded-2xl">
+<i class="fa-solid fa-house"></i>
+<span>Home</span>
+</a>
+
+<a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-white/5 rounded-2xl transition">
+<i class="fa-solid fa-chart-bar"></i>
+<span>Analytics</span>
+</a>
+
+<a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-white/5 rounded-2xl transition">
+<i class="fa-solid fa-robot"></i>
+<span>AI Engine</span>
+</a>
+
+<a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-white/5 rounded-2xl transition">
+<i class="fa-solid fa-code"></i>
+<span>Technologies</span>
+</a>
+
+<a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-white/5 rounded-2xl transition">
+<i class="fa-solid fa-user"></i>
+<span>About Me</span>
+</a>
+
+</nav>
+
+<!-- TECHNOLOGIES -->
+
+<div class="mt-12">
+
+<p class="text-xs uppercase tracking-widest text-gray-400 mb-4">
+Technologies
+</p>
+
+<div class="grid grid-cols-2 gap-3 text-sm">
+
+<div class="flex items-center gap-2 bg-white/5 px-3 py-2 rounded-xl">
+🐍 Python
+</div>
+
+<div class="flex items-center gap-2 bg-white/5 px-3 py-2 rounded-xl">
+📊 Flask
+</div>
+
+<div class="flex items-center gap-2 bg-white/5 px-3 py-2 rounded-xl">
+🧠 ML
+</div>
+
+<div class="flex items-center gap-2 bg-white/5 px-3 py-2 rounded-xl">
+📚 NLP
+</div>
+
+<div class="flex items-center gap-2 bg-white/5 px-3 py-2 rounded-xl">
+⚡ AI
+</div>
+
+</div>
+
+</div>
+
+<!-- BUILT WITH -->
+
+<div class="mt-auto pt-8">
+
+<div class="flex items-center gap-3 bg-white/5 p-4 rounded-3xl">
+
+<div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center">
+🚀
+</div>
+
+<div class="text-sm">
+<p class="font-medium">Built with ❤️</p>
+<p class="text-gray-400 text-xs">using Python & Streamlit</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- MAIN -->
+
+<div class="main-content ml-72 p-8">
+
+<div class="max-w-6xl mx-auto">
+
+<div class="flex justify-between items-start mb-12 flex-wrap gap-5">
+
+<div>
+
+<div class="flex items-center gap-4">
+
+<div class="text-6xl">
+🌌
+</div>
+
+<h1 class="title text-7xl font-bold tracking-tight">
+Language Detection
+</h1>
+
+</div>
+
+<p class="text-indigo-300 mt-4 text-xl flex items-center gap-2">
+POWERED BY NLP & MACHINE LEARNING
+<span>✦</span>
+</p>
+
+</div>
+
+<div class="inline-flex items-center bg-white/10 text-sm px-5 py-2 rounded-3xl backdrop-blur-md">
+<span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse mr-2"></span>
+Model Ready
+</div>
+
+</div>
+
+<p class="text-center text-gray-300 mb-12 text-lg">
+Enter any text and detect the language instantly ✨
+</p>
+
+<!-- SUPPORTED LANGUAGES -->
+
+<div class="mb-12">
+
+<div class="flex items-center gap-2 mb-6">
+<i class="fa-solid fa-globe text-indigo-400"></i>
+
+<h2 class="uppercase tracking-widest text-sm font-medium text-gray-400">
+Supported Languages
+</h2>
+</div>
+
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+
+<div class="lang-card p-6 text-center">
+<div class="text-5xl mb-3">🇺🇸</div>
+<p class="font-semibold">English</p>
+</div>
+
+<div class="lang-card p-6 text-center">
+<div class="text-5xl mb-3">🇮🇳</div>
+<p class="font-semibold">Hindi</p>
+</div>
+
+<div class="lang-card p-6 text-center">
+<div class="text-5xl mb-3">🇫🇷</div>
+<p class="font-semibold">French</p>
+</div>
+
+<div class="lang-card p-6 text-center">
+<div class="text-5xl mb-3">🇪🇸</div>
+<p class="font-semibold">Spanish</p>
+</div>
+
+<div class="lang-card p-6 text-center">
+<div class="text-5xl mb-3">🇩🇪</div>
+<p class="font-semibold">German</p>
+</div>
+
+<div class="lang-card p-6 text-center">
+<div class="text-5xl mb-3">🇮🇹</div>
+<p class="font-semibold">Italian</p>
+</div>
+
+<div class="lang-card p-6 text-center">
+<div class="text-5xl mb-3">🇯🇵</div>
+<p class="font-semibold">Japanese</p>
+</div>
+
+<div class="lang-card p-6 text-center">
+<div class="text-5xl mb-3">🇨🇳</div>
+<p class="font-semibold">Chinese</p>
+</div>
+
+<div class="lang-card p-6 text-center">
+<div class="text-5xl mb-3">🇷🇺</div>
+<p class="font-semibold">Russian</p>
+</div>
+
+<div class="lang-card p-6 text-center">
+<div class="text-5xl mb-3">🇰🇷</div>
+<p class="font-semibold">Korean</p>
+</div>
+
+</div>
+
+</div>
+
+<!-- INPUT -->
+
+<div class="card rounded-3xl p-8">
+
+<div class="flex items-center gap-3 mb-4">
+<i class="fa-solid fa-pen-nib text-indigo-400"></i>
+
+<span class="font-medium">
+ENTER TEXT BELOW
+</span>
+
+</div>
+
+<textarea
+id="inputText"
+class="input-box w-full h-40 rounded-2xl p-6 text-lg resize-none focus:outline-none"
+placeholder="Type or paste any text here..."></textarea>
+
+<button
+onclick="detectLanguage()"
+class="btn-detect w-full mt-6 text-white font-semibold text-xl py-6 rounded-3xl flex items-center justify-center gap-3">
+
+<i class="fa-solid fa-wand-magic-sparkles"></i>
+
+DETECT LANGUAGE
+
+<span class="text-2xl">
+→
+</span>
+
+</button>
+
+</div>
+
+<!-- RESULT -->
+
+<div id="result"
+class="hidden card rounded-3xl p-8 mt-8">
+
+<div class="flex items-center gap-3 mb-6">
+
+<div class="w-8 h-8 bg-gradient-to-br from-emerald-400 to-cyan-400 rounded-2xl flex items-center justify-center text-xl">
+🌍
+</div>
+
+<span class="font-semibold text-xl">
+PREDICTED LANGUAGE
+</span>
+
+</div>
+
+<div id="detectedLang"
+class="text-6xl font-bold text-center py-8">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<footer class="fixed bottom-6 right-8 text-xs text-gray-500">
+© 2026 Language Detection AI
+</footer>
+
+<script>
+
+async function detectLanguage(){
+
+const input=document
+.getElementById('inputText')
+.value
+.trim();
+
+const resultDiv=document.getElementById('result');
+
+const detected=document.getElementById('detectedLang');
+
+if(!input){
+
+alert("Please enter some text!");
+
+return;
+}
+
+resultDiv.classList.remove('hidden');
+
+detected.innerHTML=`
+<div class="animate-pulse text-3xl">
+⏳ Detecting...
+</div>
+`;
+
+try{
+
+const response = await fetch('/detect',{
+
+method:'POST',
+
+headers:{
+'Content-Type':'application/json'
+},
+
+body:JSON.stringify({
+text:input
+})
+
+});
+
+const data = await response.json();
+
+detected.innerHTML=`
+<span class="text-7xl">
+${data.flag}
+</span>
+<br>
+${data.language}
+
+<div class="text-lg text-indigo-300 mt-4 uppercase tracking-widest">
+${data.code}
+</div>
+`;
+
+}catch(error){
+
+detected.innerHTML=`
+<span class="text-6xl">❌</span>
+<br>
+Detection Failed
+`;
+
+}
+
+}
+
+function createShootingStar(){
+
+const star=document.createElement('div');
+
+star.className='shooting-star';
+
+star.style.top=Math.random()*60+'%';
+
+star.style.left='-50px';
+
+star.style.animationDuration=
+(Math.random()*3+4)+'s';
+
+document.body.appendChild(star);
+
+setTimeout(()=>{
+star.remove();
+},8000);
+
+}
+
+setInterval(()=>{
+if(Math.random()>.6){
+createShootingStar();
+}
+},800);
+
+document.querySelectorAll('.lang-card')
+.forEach(card=>{
+
+card.addEventListener('mousemove',e=>{
+
+const rect=card.getBoundingClientRect();
+
+const x=e.clientX-rect.left;
+
+const y=e.clientY-rect.top;
+
+card.style.setProperty('--x',`${x}px`);
+card.style.setProperty('--y',`${y}px`);
+
+});
+
+});
+
+</script>
+
+</body>
+</html>
