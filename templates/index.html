@@ -12,7 +12,6 @@
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
 <style>
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 
 :root{
@@ -34,6 +33,8 @@ body{
     min-height:100vh;
 }
 
+/* ================= BACKGROUND ================= */
+
 .stars{
     position:fixed;
     inset:0;
@@ -50,6 +51,8 @@ body{
     radial-gradient(circle at 80% 70%,rgba(168,85,247,.25),transparent 40%);
     z-index:-2;
 }
+
+/* ================= TITLE ================= */
 
 .title{
     font-family:'Space Grotesk',sans-serif;
@@ -92,6 +95,8 @@ body{
     }
 }
 
+/* ================= CARD ================= */
+
 .card{
     background:rgba(255,255,255,.05);
     border:1px solid rgba(255,255,255,.08);
@@ -100,21 +105,30 @@ body{
     0 10px 30px rgba(0,0,0,.3);
 }
 
+/* ================= LANGUAGE CARD ================= */
+
 .lang-card{
     position:relative;
     overflow:hidden;
     cursor:pointer;
+
     background:rgba(255,255,255,.05);
+
     border-radius:24px;
+
     transition:all .45s ease;
+
     transform-style:preserve-3d;
+
     animation:floatCard 5s ease-in-out infinite;
 }
 
 .lang-card::before{
     content:"";
+
     position:absolute;
     inset:-2px;
+
     border-radius:24px;
     padding:2px;
 
@@ -127,6 +141,7 @@ body{
     );
 
     background-size:300% 300%;
+
     animation:borderMove 6s linear infinite;
 
     -webkit-mask:
@@ -139,6 +154,7 @@ body{
 
 .lang-card::after{
     content:"";
+
     position:absolute;
 
     width:180px;
@@ -153,8 +169,11 @@ body{
     left:var(--x);
 
     transform:translate(-50%,-50%);
+
     opacity:0;
+
     transition:opacity .3s ease;
+
     pointer-events:none;
 }
 
@@ -196,9 +215,13 @@ body{
     }
 }
 
+/* ================= INPUT ================= */
+
 .input-box{
     background:rgba(15,23,42,.75);
+
     border:1px solid rgba(165,180,252,.25);
+
     transition:.3s;
 }
 
@@ -210,6 +233,8 @@ body{
     0 0 25px rgba(99,102,241,.3);
 }
 
+/* ================= BUTTON ================= */
+
 .btn-detect{
     background:
     linear-gradient(
@@ -220,7 +245,9 @@ body{
     );
 
     background-size:300% auto;
+
     transition:.4s ease;
+
     animation:gradientMove 5s linear infinite;
 }
 
@@ -233,8 +260,11 @@ body{
     0 10px 25px rgba(99,102,241,.45);
 }
 
+/* ================= SHOOTING STAR ================= */
+
 .shooting-star{
     position:absolute;
+
     width:4px;
     height:2px;
 
@@ -254,6 +284,7 @@ body{
         transform:
         translateX(-100px)
         translateY(-100px);
+
         opacity:0;
     }
 
@@ -269,26 +300,42 @@ body{
         transform:
         translateX(900px)
         translateY(400px);
+
         opacity:0;
     }
 }
 
+/* ================= SCROLLBAR ================= */
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#6366f1;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-track{
+    background:#111827;
+}
+
+/* ================= RESPONSIVE ================= */
+
 @media(max-width:1024px){
 
-.sidebar{
-display:none;
-}
+    .sidebar{
+        display:none;
+    }
 
-.main-content{
-margin-left:0;
-}
+    .main-content{
+        margin-left:0;
+    }
 
-.title{
-font-size:3rem !important;
+    .title{
+        font-size:3rem !important;
+    }
 }
-
-}
-
 </style>
 </head>
 
@@ -297,7 +344,7 @@ font-size:3rem !important;
 <div class="stars"></div>
 <div class="nebula"></div>
 
-<!-- SIDEBAR -->
+<!-- ================= SIDEBAR ================= -->
 
 <div class="sidebar fixed left-0 top-0 h-full w-72 bg-[#0f172a]/95 border-r border-white/10 p-6 flex flex-col z-50">
 
@@ -343,8 +390,6 @@ font-size:3rem !important;
 
 </nav>
 
-<!-- TECHNOLOGIES -->
-
 <div class="mt-12">
 
 <p class="text-xs uppercase tracking-widest text-gray-400 mb-4">
@@ -377,8 +422,6 @@ Technologies
 
 </div>
 
-<!-- BUILT WITH -->
-
 <div class="mt-auto pt-8">
 
 <div class="flex items-center gap-3 bg-white/5 p-4 rounded-3xl">
@@ -389,7 +432,7 @@ Technologies
 
 <div class="text-sm">
 <p class="font-medium">Built with ❤️</p>
-<p class="text-gray-400 text-xs">using Python & Streamlit</p>
+<p class="text-gray-400 text-xs">Python & Flask</p>
 </div>
 
 </div>
@@ -398,11 +441,13 @@ Technologies
 
 </div>
 
-<!-- MAIN -->
+<!-- ================= MAIN ================= -->
 
 <div class="main-content ml-72 p-8">
 
 <div class="max-w-6xl mx-auto">
+
+<!-- HEADER -->
 
 <div class="flex justify-between items-start mb-12 flex-wrap gap-5">
 
@@ -438,7 +483,7 @@ Model Ready
 Enter any text and detect the language instantly ✨
 </p>
 
-<!-- SUPPORTED LANGUAGES -->
+<!-- ================= LANGUAGES ================= -->
 
 <div class="mb-12">
 
@@ -452,52 +497,52 @@ Supported Languages
 
 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
 
-<div class="lang-card p-6 text-center">
+<div onclick="selectLang(this)" class="lang-card p-6 text-center">
 <div class="text-5xl mb-3">🇺🇸</div>
 <p class="font-semibold">English</p>
 </div>
 
-<div class="lang-card p-6 text-center">
+<div onclick="selectLang(this)" class="lang-card p-6 text-center">
 <div class="text-5xl mb-3">🇮🇳</div>
 <p class="font-semibold">Hindi</p>
 </div>
 
-<div class="lang-card p-6 text-center">
+<div onclick="selectLang(this)" class="lang-card p-6 text-center">
 <div class="text-5xl mb-3">🇫🇷</div>
 <p class="font-semibold">French</p>
 </div>
 
-<div class="lang-card p-6 text-center">
+<div onclick="selectLang(this)" class="lang-card p-6 text-center">
 <div class="text-5xl mb-3">🇪🇸</div>
 <p class="font-semibold">Spanish</p>
 </div>
 
-<div class="lang-card p-6 text-center">
+<div onclick="selectLang(this)" class="lang-card p-6 text-center">
 <div class="text-5xl mb-3">🇩🇪</div>
 <p class="font-semibold">German</p>
 </div>
 
-<div class="lang-card p-6 text-center">
+<div onclick="selectLang(this)" class="lang-card p-6 text-center">
 <div class="text-5xl mb-3">🇮🇹</div>
 <p class="font-semibold">Italian</p>
 </div>
 
-<div class="lang-card p-6 text-center">
+<div onclick="selectLang(this)" class="lang-card p-6 text-center">
 <div class="text-5xl mb-3">🇯🇵</div>
 <p class="font-semibold">Japanese</p>
 </div>
 
-<div class="lang-card p-6 text-center">
+<div onclick="selectLang(this)" class="lang-card p-6 text-center">
 <div class="text-5xl mb-3">🇨🇳</div>
 <p class="font-semibold">Chinese</p>
 </div>
 
-<div class="lang-card p-6 text-center">
+<div onclick="selectLang(this)" class="lang-card p-6 text-center">
 <div class="text-5xl mb-3">🇷🇺</div>
 <p class="font-semibold">Russian</p>
 </div>
 
-<div class="lang-card p-6 text-center">
+<div onclick="selectLang(this)" class="lang-card p-6 text-center">
 <div class="text-5xl mb-3">🇰🇷</div>
 <p class="font-semibold">Korean</p>
 </div>
@@ -506,11 +551,65 @@ Supported Languages
 
 </div>
 
-<!-- INPUT -->
+<!-- ================= EXAMPLES ================= -->
+
+<div class="mb-12">
+
+<h2 class="text-sm uppercase tracking-widest text-gray-400 mb-4">
+EXAMPLE INPUTS
+</h2>
+
+<div class="grid md:grid-cols-3 gap-4">
+
+<div onclick="useExample(this)"
+class="card rounded-3xl p-6 cursor-pointer hover:border-indigo-400/30 border border-transparent transition">
+
+<p class="italic text-lg">
+"Hello my friend"
+</p>
+
+<p class="text-emerald-400 text-sm mt-4">
+English
+</p>
+
+</div>
+
+<div onclick="useExample(this)"
+class="card rounded-3xl p-6 cursor-pointer hover:border-indigo-400/30 border border-transparent transition">
+
+<p class="italic text-lg">
+"नमस्ते दोस्त"
+</p>
+
+<p class="text-orange-400 text-sm mt-4">
+Hindi
+</p>
+
+</div>
+
+<div onclick="useExample(this)"
+class="card rounded-3xl p-6 cursor-pointer hover:border-indigo-400/30 border border-transparent transition">
+
+<p class="italic text-lg">
+"Bonjour mon ami"
+</p>
+
+<p class="text-violet-400 text-sm mt-4">
+French
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= INPUT ================= -->
 
 <div class="card rounded-3xl p-8">
 
 <div class="flex items-center gap-3 mb-4">
+
 <i class="fa-solid fa-pen-nib text-indigo-400"></i>
 
 <span class="font-medium">
@@ -540,7 +639,7 @@ DETECT LANGUAGE
 
 </div>
 
-<!-- RESULT -->
+<!-- ================= RESULT ================= -->
 
 <div id="result"
 class="hidden card rounded-3xl p-8 mt-8">
@@ -573,12 +672,31 @@ class="text-6xl font-bold text-center py-8">
 
 <script>
 
-async function detectLanguage(){
+function selectLang(el){
+
+document.querySelectorAll('.lang-card').forEach(card=>{
+card.style.border='none';
+});
+
+el.style.border='2px solid #6366f1';
+
+}
+
+function useExample(el){
+
+const text=el.querySelector('p').textContent.replace(/"/g,'');
+
+document.getElementById('inputText').value=text;
+
+}
+
+function detectLanguage(){
 
 const input=document
 .getElementById('inputText')
 .value
-.trim();
+.trim()
+.toLowerCase();
 
 const resultDiv=document.getElementById('result');
 
@@ -593,51 +711,86 @@ return;
 
 resultDiv.classList.remove('hidden');
 
-detected.innerHTML=`
-<div class="animate-pulse text-3xl">
-⏳ Detecting...
-</div>
-`;
+let language="Unknown";
+let flag="🌍";
 
-try{
-
-const response = await fetch('/detect',{
-
-method:'POST',
-
-headers:{
-'Content-Type':'application/json'
-},
-
-body:JSON.stringify({
-text:input
-})
-
-});
-
-const data = await response.json();
-
-detected.innerHTML=`
-<span class="text-7xl">
-${data.flag}
-</span>
-<br>
-${data.language}
-
-<div class="text-lg text-indigo-300 mt-4 uppercase tracking-widest">
-${data.code}
-</div>
-`;
-
-}catch(error){
-
-detected.innerHTML=`
-<span class="text-6xl">❌</span>
-<br>
-Detection Failed
-`;
-
+if(
+input.includes('hello') ||
+input.includes('hi') ||
+input.includes('friend')
+){
+language="English";
+flag="🇺🇸";
 }
+
+else if(
+input.includes('नमस्ते') ||
+input.includes('दोस्त')
+){
+language="Hindi";
+flag="🇮🇳";
+}
+
+else if(
+input.includes('bonjour')
+){
+language="French";
+flag="🇫🇷";
+}
+
+else if(
+input.includes('hola')
+){
+language="Spanish";
+flag="🇪🇸";
+}
+
+else if(
+input.includes('hallo')
+){
+language="German";
+flag="🇩🇪";
+}
+
+else if(
+input.includes('ciao')
+){
+language="Italian";
+flag="🇮🇹";
+}
+
+else if(
+input.includes('こんにちは')
+){
+language="Japanese";
+flag="🇯🇵";
+}
+
+else if(
+input.includes('你好')
+){
+language="Chinese";
+flag="🇨🇳";
+}
+
+else if(
+input.includes('안녕하세요')
+){
+language="Korean";
+flag="🇰🇷";
+}
+
+else if(
+input.includes('привет')
+){
+language="Russian";
+flag="🇷🇺";
+}
+
+detected.innerHTML=`
+<span class="text-7xl">${flag}</span><br>
+${language}
+`;
 
 }
 
@@ -683,6 +836,18 @@ card.style.setProperty('--x',`${x}px`);
 card.style.setProperty('--y',`${y}px`);
 
 });
+
+});
+
+document.addEventListener('keydown',e=>{
+
+if(
+e.key==='Enter'
+&&
+document.getElementById('inputText')===document.activeElement
+){
+detectLanguage();
+}
 
 });
 
