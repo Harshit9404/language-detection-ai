@@ -849,8 +849,31 @@ q:input
 const detectData =
 await detectResponse.json();
 
+
 const lang =
-detectData.data.detections[0].language;
+detectData?.data?.detections?.[0]?.language;
+
+if(!lang){
+
+document.getElementById("result")
+.classList.remove("hidden");
+
+document.getElementById("detectedLang")
+.innerHTML = `
+
+<div class="text-7xl mb-4">
+⚠️
+</div>
+
+<div class="text-3xl font-bold text-red-400">
+Language Not Detected
+</div>
+
+`;
+
+return;
+
+}
 
 const languageNames = {
 
@@ -863,7 +886,73 @@ it:"Italian",
 ja:"Japanese",
 zh:"Chinese",
 ko:"Korean",
-ru:"Russian"
+ru:"Russian",
+ur:"Urdu",
+ar:"Arabic",
+bn:"Bengali",
+ta:"Tamil",
+te:"Telugu",
+ml:"Malayalam",
+gu:"Gujarati",
+pa:"Punjabi",
+mr:"Marathi",
+ne:"Nepali",
+th:"Thai",
+vi:"Vietnamese",
+id:"Indonesian",
+tr:"Turkish",
+pt:"Portuguese",
+pl:"Polish",
+uk:"Ukrainian",
+fa:"Persian",
+el:"Greek",
+he:"Hebrew",
+kn:"Kannada",
+or:"Odia",
+sd:"Sindhi",
+si:"Sinhala",
+ps:"Pashto",
+uz:"Uzbek",
+kk:"Kazakh",
+ky:"Kyrgyz",
+lo:"Lao",
+km:"Khmer",
+my:"Myanmar",
+af:"Afrikaans",
+sq:"Albanian",
+am:"Amharic",
+az:"Azerbaijani",
+be:"Belarusian",
+bs:"Bosnian",
+bg:"Bulgarian",
+ca:"Catalan",
+hr:"Croatian",
+cs:"Czech",
+da:"Danish",
+nl:"Dutch",
+et:"Estonian",
+fi:"Finnish",
+ka:"Georgian",
+hu:"Hungarian",
+is:"Icelandic",
+ga:"Irish",
+lv:"Latvian",
+lt:"Lithuanian",
+mk:"Macedonian",
+mn:"Mongolian",
+no:"Norwegian",
+ro:"Romanian",
+sr:"Serbian",
+sk:"Slovak",
+sl:"Slovenian",
+so:"Somali",
+sw:"Swahili",
+sv:"Swedish",
+tg:"Tajik",
+cy:"Welsh",
+xh:"Xhosa",
+yo:"Yoruba",
+zu:"Zulu"
 
 };
 
@@ -878,10 +967,75 @@ it:"🇮🇹",
 ja:"🇯🇵",
 zh:"🇨🇳",
 ko:"🇰🇷",
-ru:"🇷🇺"
+ru:"🇷🇺",
+ur:"🇵🇰",
+ar:"🇸🇦",
+bn:"🇧🇩",
+ta:"🇮🇳",
+te:"🇮🇳",
+ml:"🇮🇳",
+gu:"🇮🇳",
+pa:"🇮🇳",
+mr:"🇮🇳",
+ne:"🇳🇵",
+th:"🇹🇭",
+vi:"🇻🇳",
+id:"🇮🇩",
+tr:"🇹🇷",
+pt:"🇵🇹",
+pl:"🇵🇱",
+uk:"🇺🇦",
+fa:"🇮🇷",
+el:"🇬🇷",
+he:"🇮🇱",
+kn:"🇮🇳",
+or:"🇮🇳",
+sd:"🇵🇰",
+si:"🇱🇰",
+ps:"🇦🇫",
+uz:"🇺🇿",
+kk:"🇰🇿",
+ky:"🇰🇬",
+lo:"🇱🇦",
+km:"🇰🇭",
+my:"🇲🇲",
+af:"🇿🇦",
+sq:"🇦🇱",
+am:"🇪🇹",
+az:"🇦🇿",
+be:"🇧🇾",
+bs:"🇧🇦",
+bg:"🇧🇬",
+ca:"🇪🇸",
+hr:"🇭🇷",
+cs:"🇨🇿",
+da:"🇩🇰",
+nl:"🇳🇱",
+et:"🇪🇪",
+fi:"🇫🇮",
+ka:"🇬🇪",
+hu:"🇭🇺",
+is:"🇮🇸",
+ga:"🇮🇪",
+lv:"🇱🇻",
+lt:"🇱🇹",
+mk:"🇲🇰",
+mn:"🇲🇳",
+no:"🇳🇴",
+ro:"🇷🇴",
+sr:"🇷🇸",
+sk:"🇸🇰",
+sl:"🇸🇮",
+so:"🇸🇴",
+sw:"🇹🇿",
+sv:"🇸🇪",
+tg:"🇹🇯",
+cy:"🏴",
+xh:"🇿🇦",
+yo:"🇳🇬",
+zu:"🇿🇦"
 
 };
-
 const languageName =
 languageNames[lang] || lang;
 
