@@ -12,6 +12,7 @@
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
 <style>
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 
 :root{
@@ -260,82 +261,24 @@ body{
     0 10px 25px rgba(99,102,241,.45);
 }
 
-/* ================= SHOOTING STAR ================= */
-
-.shooting-star{
-    position:absolute;
-
-    width:4px;
-    height:2px;
-
-    background:
-    linear-gradient(
-    90deg,
-    transparent,
-    #e0bbff,
-    transparent
-    );
-
-    animation:shoot 8s linear infinite;
-}
-
-@keyframes shoot{
-    0%{
-        transform:
-        translateX(-100px)
-        translateY(-100px);
-
-        opacity:0;
-    }
-
-    10%{
-        opacity:1;
-    }
-
-    90%{
-        opacity:1;
-    }
-
-    100%{
-        transform:
-        translateX(900px)
-        translateY(400px);
-
-        opacity:0;
-    }
-}
-
-/* ================= SCROLLBAR ================= */
-
-::-webkit-scrollbar{
-    width:10px;
-}
-
-::-webkit-scrollbar-thumb{
-    background:#6366f1;
-    border-radius:20px;
-}
-
-::-webkit-scrollbar-track{
-    background:#111827;
-}
-
 /* ================= RESPONSIVE ================= */
 
 @media(max-width:1024px){
 
-    .sidebar{
-        display:none;
-    }
-
-    .main-content{
-        margin-left:0;
-    }
-
-    .title{
-        font-size:3rem !important;
-    }
+.sidebar{
+display:none;
 }
+
+.main-content{
+margin-left:0;
+}
+
+.title{
+font-size:3rem !important;
+}
+
+}
+
 </style>
 </head>
 
@@ -343,6 +286,8 @@ body{
 
 <div class="stars"></div>
 <div class="nebula"></div>
+
+<!-- ================= SIDEBAR ================= -->
 
 <div class="sidebar fixed left-0 top-0 h-full w-72 bg-[#0f172a]/95 border-r border-white/10 p-6 flex flex-col z-50">
 
@@ -388,38 +333,6 @@ body{
 
 </nav>
 
-<div class="mt-12">
-
-<p class="text-xs uppercase tracking-widest text-gray-400 mb-4">
-Technologies
-</p>
-
-<div class="grid grid-cols-2 gap-3 text-sm">
-
-<div class="flex items-center gap-2 bg-white/5 px-3 py-2 rounded-xl">
-🐍 Python
-</div>
-
-<div class="flex items-center gap-2 bg-white/5 px-3 py-2 rounded-xl">
-📊 Flask
-</div>
-
-<div class="flex items-center gap-2 bg-white/5 px-3 py-2 rounded-xl">
-🧠 ML
-</div>
-
-<div class="flex items-center gap-2 bg-white/5 px-3 py-2 rounded-xl">
-📚 NLP
-</div>
-
-<div class="flex items-center gap-2 bg-white/5 px-3 py-2 rounded-xl">
-⚡ AI
-</div>
-
-</div>
-
-</div>
-
 <div class="mt-auto pt-8">
 
 <div class="flex items-center gap-3 bg-white/5 p-4 rounded-3xl">
@@ -430,7 +343,7 @@ Technologies
 
 <div class="text-sm">
 <p class="font-medium">Built with ❤️</p>
-<p class="text-gray-400 text-xs">Python & Flask</p>
+<p class="text-gray-400 text-xs">Python & Streamlit</p>
 </div>
 
 </div>
@@ -438,10 +351,14 @@ Technologies
 </div>
 
 </div>
+
+<!-- ================= MAIN ================= -->
 
 <div class="main-content ml-72 p-8">
 
 <div class="max-w-6xl mx-auto">
+
+<!-- HEADER -->
 
 <div class="flex justify-between items-start mb-12 flex-wrap gap-5">
 
@@ -468,7 +385,7 @@ POWERED BY NLP & MACHINE LEARNING
 
 <div class="inline-flex items-center bg-white/10 text-sm px-5 py-2 rounded-3xl backdrop-blur-md">
 <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse mr-2"></span>
-Model Ready
+API Connected
 </div>
 
 </div>
@@ -476,6 +393,8 @@ Model Ready
 <p class="text-center text-gray-300 mb-12 text-lg">
 Enter any text and detect the language instantly ✨
 </p>
+
+<!-- ================= LANGUAGES ================= -->
 
 <div class="mb-12">
 
@@ -490,58 +409,60 @@ Supported Languages
 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
 
 <div onclick="selectLang(this)" class="lang-card p-6 text-center">
-<div class="mb-3 flex justify-center"><img src="https://em-content.zobj.net/source/apple/391/flag-united-states_1f1fa-1f1f8.png" class="h-16 w-16 object-contain" alt="US"></div>
+<div class="text-5xl mb-3">🇺🇸</div>
 <p class="font-semibold">English</p>
 </div>
 
 <div onclick="selectLang(this)" class="lang-card p-6 text-center">
-<div class="mb-3 flex justify-center"><img src="https://em-content.zobj.net/source/apple/391/flag-india_1f1ee-1f1f3.png" class="h-16 w-16 object-contain" alt="IN"></div>
+<div class="text-5xl mb-3">🇮🇳</div>
 <p class="font-semibold">Hindi</p>
 </div>
 
 <div onclick="selectLang(this)" class="lang-card p-6 text-center">
-<div class="mb-3 flex justify-center"><img src="https://em-content.zobj.net/source/apple/391/flag-france_1f1eb-1f1f7.png" class="h-16 w-16 object-contain" alt="FR"></div>
+<div class="text-5xl mb-3">🇫🇷</div>
 <p class="font-semibold">French</p>
 </div>
 
 <div onclick="selectLang(this)" class="lang-card p-6 text-center">
-<div class="mb-3 flex justify-center"><img src="https://em-content.zobj.net/source/apple/391/flag-spain_1f1ea-1f1f8.png" class="h-16 w-16 object-contain" alt="ES"></div>
+<div class="text-5xl mb-3">🇪🇸</div>
 <p class="font-semibold">Spanish</p>
 </div>
 
 <div onclick="selectLang(this)" class="lang-card p-6 text-center">
-<div class="mb-3 flex justify-center"><img src="https://em-content.zobj.net/source/apple/391/flag-germany_1f1e9-1f1ea.png" class="h-16 w-16 object-contain" alt="DE"></div>
+<div class="text-5xl mb-3">🇩🇪</div>
 <p class="font-semibold">German</p>
 </div>
 
 <div onclick="selectLang(this)" class="lang-card p-6 text-center">
-<div class="mb-3 flex justify-center"><img src="https://em-content.zobj.net/source/apple/391/flag-italy_1f1ee-1f1f9.png" class="h-16 w-16 object-contain" alt="IT"></div>
+<div class="text-5xl mb-3">🇮🇹</div>
 <p class="font-semibold">Italian</p>
 </div>
 
 <div onclick="selectLang(this)" class="lang-card p-6 text-center">
-<div class="mb-3 flex justify-center"><img src="https://em-content.zobj.net/source/apple/391/flag-japan_1f1ef-1f1f5.png" class="h-16 w-16 object-contain" alt="JP"></div>
+<div class="text-5xl mb-3">🇯🇵</div>
 <p class="font-semibold">Japanese</p>
 </div>
 
 <div onclick="selectLang(this)" class="lang-card p-6 text-center">
-<div class="mb-3 flex justify-center"><img src="https://em-content.zobj.net/source/apple/391/flag-china_1f1e8-1f1f3.png" class="h-16 w-16 object-contain" alt="CN"></div>
+<div class="text-5xl mb-3">🇨🇳</div>
 <p class="font-semibold">Chinese</p>
 </div>
 
 <div onclick="selectLang(this)" class="lang-card p-6 text-center">
-<div class="mb-3 flex justify-center"><img src="https://em-content.zobj.net/source/apple/391/flag-russia_1f1f7-1f1fa.png" class="h-16 w-16 object-contain" alt="RU"></div>
+<div class="text-5xl mb-3">🇷🇺</div>
 <p class="font-semibold">Russian</p>
 </div>
 
 <div onclick="selectLang(this)" class="lang-card p-6 text-center">
-<div class="mb-3 flex justify-center"><img src="https://em-content.zobj.net/source/apple/391/flag-south-korea_1f1f0-1f1f7.png" class="h-16 w-16 object-contain" alt="KR"></div>
+<div class="text-5xl mb-3">🇰🇷</div>
 <p class="font-semibold">Korean</p>
 </div>
 
 </div>
 
 </div>
+
+<!-- ================= EXAMPLE INPUTS ================= -->
 
 <div class="mb-12">
 
@@ -594,6 +515,8 @@ French
 
 </div>
 
+<!-- ================= INPUT ================= -->
+
 <div class="card rounded-3xl p-8">
 
 <div class="flex items-center gap-3 mb-4">
@@ -627,6 +550,8 @@ DETECT LANGUAGE
 
 </div>
 
+<!-- ================= RESULT ================= -->
+
 <div id="result"
 class="hidden card rounded-3xl p-8 mt-8">
 
@@ -643,7 +568,7 @@ PREDICTED LANGUAGE
 </div>
 
 <div id="detectedLang"
-class="text-6xl font-bold text-center py-8">
+class="text-5xl font-bold text-center py-8">
 </div>
 
 </div>
@@ -670,142 +595,126 @@ el.style.border='2px solid #6366f1';
 
 function useExample(el){
 
-const text=el.querySelector('p').textContent.replace(/"/g,'');
+const text=el.querySelector('p')
+.textContent
+.replace(/"/g,'');
 
 document.getElementById('inputText').value=text;
 
 }
 
-function detectLanguage(){
+async function detectLanguage(){
 
 const input=document
-.getElementById('inputText')
+.getElementById("inputText")
 .value
-.trim()
-.toLowerCase();
+.trim();
 
-const resultDiv=document.getElementById('result');
+const resultDiv=document
+.getElementById("result");
 
-const detected=document.getElementById('detectedLang');
+const detected=document
+.getElementById("detectedLang");
 
 if(!input){
 
 alert("Please enter some text!");
 
 return;
+
 }
 
-resultDiv.classList.remove('hidden');
+resultDiv.classList.remove("hidden");
 
-let language="Unknown";
-let flagImg="https://em-content.zobj.net/source/apple/391/globe-with-meridians_1f310.png";
+try{
 
-if(
-input.includes('hello') ||
-input.includes('hi') ||
-input.includes('friend')
-){
-language="English";
-flagImg="https://em-content.zobj.net/source/apple/391/flag-united-states_1f1fa-1f1f8.png";
-}
+const response = await fetch(
 
-else if(
-input.includes('नमस्ते') ||
-input.includes('दोस्त')
-){
-language="Hindi";
-flagImg="https://em-content.zobj.net/source/apple/391/flag-india_1f1ee-1f1f3.png";
-}
+"https://ws.detectlanguage.com/0.2/detect",
 
-else if(
-input.includes('bonjour')
-){
-language="French";
-flagImg="https://em-content.zobj.net/source/apple/391/flag-france_1f1eb-1f1f7.png";
-}
+{
 
-else if(
-input.includes('hola')
-){
-language="Spanish";
-flagImg="https://em-content.zobj.net/source/apple/391/flag-spain_1f1ea-1f1f8.png";
-}
+method:"POST",
 
-else if(
-input.includes('hallo')
-){
-language="German";
-flagImg="https://em-content.zobj.net/source/apple/391/flag-germany_1f1e9-1f1ea.png";
-}
+headers:{
+"Authorization":"Bearer 15f392beed4cd44911c6eb6764721eaa",
+"Content-Type":"application/json"
+},
 
-else if(
-input.includes('ciao')
-){
-language="Italian";
-flagImg="https://em-content.zobj.net/source/apple/391/flag-italy_1f1ee-1f1f9.png";
-}
+body:JSON.stringify({
+q:input
+})
 
-else if(
-input.includes('こんにちは')
-){
-language="Japanese";
-flagImg="https://em-content.zobj.net/source/apple/391/flag-japan_1f1ef-1f1f5.png";
-}
+});
 
-else if(
-input.includes('你好')
-){
-language="Chinese";
-flagImg="https://em-content.zobj.net/source/apple/391/flag-china_1f1e8-1f1f3.png";
-}
+const data = await response.json();
 
-else if(
-input.includes('안녕하세요')
-){
-language="Korean";
-flagImg="https://em-content.zobj.net/source/apple/391/flag-south-korea_1f1f0-1f1f7.png";
-}
+const lang =
+data.data.detections[0].language;
 
-else if(
-input.includes('привет')
-){
-language="Russian";
-flagImg="https://em-content.zobj.net/source/apple/391/flag-russia_1f1f7-1f1fa.png";
-}
+const languages = {
 
-detected.innerHTML=`
-<div class="flex justify-center mb-4"><img src="${flagImg}" class="h-24 w-24 object-contain" alt="Flag"></div>
-<div class="text-4xl uppercase tracking-tighter">${language}</div>
+en:"English",
+hi:"Hindi",
+fr:"French",
+es:"Spanish",
+de:"German",
+it:"Italian",
+ja:"Japanese",
+zh:"Chinese",
+ko:"Korean",
+ru:"Russian"
+
+};
+
+const languageName =
+languages[lang] || lang;
+
+const flags = {
+
+en:"https://flagcdn.com/w320/us.png",
+hi:"https://flagcdn.com/w320/in.png",
+fr:"https://flagcdn.com/w320/fr.png",
+es:"https://flagcdn.com/w320/es.png",
+de:"https://flagcdn.com/w320/de.png",
+it:"https://flagcdn.com/w320/it.png",
+ja:"https://flagcdn.com/w320/jp.png",
+zh:"https://flagcdn.com/w320/cn.png",
+ko:"https://flagcdn.com/w320/kr.png",
+ru:"https://flagcdn.com/w320/ru.png"
+
+};
+
+const flag =
+flags[lang] ||
+"https://flagcdn.com/w320/un.png";
+
+detected.innerHTML = `
+
+<img 
+src="${flag}" 
+class="w-32 h-32 mx-auto mb-4 object-contain">
+
+<br>
+
+${languageName}
+
 `;
 
 }
 
-function createShootingStar(){
+catch(error){
 
-const star=document.createElement('div');
+detected.innerHTML =
+"Error Detecting Language";
 
-star.className='shooting-star';
-
-star.style.top=Math.random()*60+'%';
-
-star.style.left='-50px';
-
-star.style.animationDuration=
-(Math.random()*3+4)+'s';
-
-document.body.appendChild(star);
-
-setTimeout(()=>{
-star.remove();
-},8000);
+console.log(error);
 
 }
 
-setInterval(()=>{
-if(Math.random()>.6){
-createShootingStar();
 }
-},800);
+
+/* LIGHT EFFECT */
 
 document.querySelectorAll('.lang-card')
 .forEach(card=>{
@@ -822,18 +731,6 @@ card.style.setProperty('--x',`${x}px`);
 card.style.setProperty('--y',`${y}px`);
 
 });
-
-});
-
-document.addEventListener('keydown',e=>{
-
-if(
-e.key==='Enter'
-&&
-document.getElementById('inputText')===document.activeElement
-){
-detectLanguage();
-}
 
 });
 
