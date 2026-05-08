@@ -344,8 +344,6 @@ body{
 <div class="stars"></div>
 <div class="nebula"></div>
 
-<!-- ================= SIDEBAR ================= -->
-
 <div class="sidebar fixed left-0 top-0 h-full w-72 bg-[#0f172a]/95 border-r border-white/10 p-6 flex flex-col z-50">
 
 <div class="flex items-center gap-3 mb-10">
@@ -441,13 +439,9 @@ Technologies
 
 </div>
 
-<!-- ================= MAIN ================= -->
-
 <div class="main-content ml-72 p-8">
 
 <div class="max-w-6xl mx-auto">
-
-<!-- HEADER -->
 
 <div class="flex justify-between items-start mb-12 flex-wrap gap-5">
 
@@ -483,8 +477,6 @@ Model Ready
 Enter any text and detect the language instantly ✨
 </p>
 
-<!-- ================= LANGUAGES ================= -->
-
 <div class="mb-12">
 
 <div class="flex items-center gap-2 mb-6">
@@ -498,60 +490,58 @@ Supported Languages
 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
 
 <div onclick="selectLang(this)" class="lang-card p-6 text-center">
-<div class="text-5xl mb-3">🇺🇸</div>
+<div class="mb-3 flex justify-center"><img src="https://em-content.zobj.net/source/apple/391/flag-united-states_1f1fa-1f1f8.png" class="h-16 w-16 object-contain" alt="US"></div>
 <p class="font-semibold">English</p>
 </div>
 
 <div onclick="selectLang(this)" class="lang-card p-6 text-center">
-<div class="text-5xl mb-3">🇮🇳</div>
+<div class="mb-3 flex justify-center"><img src="https://em-content.zobj.net/source/apple/391/flag-india_1f1ee-1f1f3.png" class="h-16 w-16 object-contain" alt="IN"></div>
 <p class="font-semibold">Hindi</p>
 </div>
 
 <div onclick="selectLang(this)" class="lang-card p-6 text-center">
-<div class="text-5xl mb-3">🇫🇷</div>
+<div class="mb-3 flex justify-center"><img src="https://em-content.zobj.net/source/apple/391/flag-france_1f1eb-1f1f7.png" class="h-16 w-16 object-contain" alt="FR"></div>
 <p class="font-semibold">French</p>
 </div>
 
 <div onclick="selectLang(this)" class="lang-card p-6 text-center">
-<div class="text-5xl mb-3">🇪🇸</div>
+<div class="mb-3 flex justify-center"><img src="https://em-content.zobj.net/source/apple/391/flag-spain_1f1ea-1f1f8.png" class="h-16 w-16 object-contain" alt="ES"></div>
 <p class="font-semibold">Spanish</p>
 </div>
 
 <div onclick="selectLang(this)" class="lang-card p-6 text-center">
-<div class="text-5xl mb-3">🇩🇪</div>
+<div class="mb-3 flex justify-center"><img src="https://em-content.zobj.net/source/apple/391/flag-germany_1f1e9-1f1ea.png" class="h-16 w-16 object-contain" alt="DE"></div>
 <p class="font-semibold">German</p>
 </div>
 
 <div onclick="selectLang(this)" class="lang-card p-6 text-center">
-<div class="text-5xl mb-3">🇮🇹</div>
+<div class="mb-3 flex justify-center"><img src="https://em-content.zobj.net/source/apple/391/flag-italy_1f1ee-1f1f9.png" class="h-16 w-16 object-contain" alt="IT"></div>
 <p class="font-semibold">Italian</p>
 </div>
 
 <div onclick="selectLang(this)" class="lang-card p-6 text-center">
-<div class="text-5xl mb-3">🇯🇵</div>
+<div class="mb-3 flex justify-center"><img src="https://em-content.zobj.net/source/apple/391/flag-japan_1f1ef-1f1f5.png" class="h-16 w-16 object-contain" alt="JP"></div>
 <p class="font-semibold">Japanese</p>
 </div>
 
 <div onclick="selectLang(this)" class="lang-card p-6 text-center">
-<div class="text-5xl mb-3">🇨🇳</div>
+<div class="mb-3 flex justify-center"><img src="https://em-content.zobj.net/source/apple/391/flag-china_1f1e8-1f1f3.png" class="h-16 w-16 object-contain" alt="CN"></div>
 <p class="font-semibold">Chinese</p>
 </div>
 
 <div onclick="selectLang(this)" class="lang-card p-6 text-center">
-<div class="text-5xl mb-3">🇷🇺</div>
+<div class="mb-3 flex justify-center"><img src="https://em-content.zobj.net/source/apple/391/flag-russia_1f1f7-1f1fa.png" class="h-16 w-16 object-contain" alt="RU"></div>
 <p class="font-semibold">Russian</p>
 </div>
 
 <div onclick="selectLang(this)" class="lang-card p-6 text-center">
-<div class="text-5xl mb-3">🇰🇷</div>
+<div class="mb-3 flex justify-center"><img src="https://em-content.zobj.net/source/apple/391/flag-south-korea_1f1f0-1f1f7.png" class="h-16 w-16 object-contain" alt="KR"></div>
 <p class="font-semibold">Korean</p>
 </div>
 
 </div>
 
 </div>
-
-<!-- ================= EXAMPLES ================= -->
 
 <div class="mb-12">
 
@@ -604,8 +594,6 @@ French
 
 </div>
 
-<!-- ================= INPUT ================= -->
-
 <div class="card rounded-3xl p-8">
 
 <div class="flex items-center gap-3 mb-4">
@@ -638,8 +626,6 @@ DETECT LANGUAGE
 </button>
 
 </div>
-
-<!-- ================= RESULT ================= -->
 
 <div id="result"
 class="hidden card rounded-3xl p-8 mt-8">
@@ -712,7 +698,7 @@ return;
 resultDiv.classList.remove('hidden');
 
 let language="Unknown";
-let flag="🌍";
+let flagImg="https://em-content.zobj.net/source/apple/391/globe-with-meridians_1f310.png";
 
 if(
 input.includes('hello') ||
@@ -720,7 +706,7 @@ input.includes('hi') ||
 input.includes('friend')
 ){
 language="English";
-flag="🇺🇸";
+flagImg="https://em-content.zobj.net/source/apple/391/flag-united-states_1f1fa-1f1f8.png";
 }
 
 else if(
@@ -728,68 +714,68 @@ input.includes('नमस्ते') ||
 input.includes('दोस्त')
 ){
 language="Hindi";
-flag="🇮🇳";
+flagImg="https://em-content.zobj.net/source/apple/391/flag-india_1f1ee-1f1f3.png";
 }
 
 else if(
 input.includes('bonjour')
 ){
 language="French";
-flag="🇫🇷";
+flagImg="https://em-content.zobj.net/source/apple/391/flag-france_1f1eb-1f1f7.png";
 }
 
 else if(
 input.includes('hola')
 ){
 language="Spanish";
-flag="🇪🇸";
+flagImg="https://em-content.zobj.net/source/apple/391/flag-spain_1f1ea-1f1f8.png";
 }
 
 else if(
 input.includes('hallo')
 ){
 language="German";
-flag="🇩🇪";
+flagImg="https://em-content.zobj.net/source/apple/391/flag-germany_1f1e9-1f1ea.png";
 }
 
 else if(
 input.includes('ciao')
 ){
 language="Italian";
-flag="🇮🇹";
+flagImg="https://em-content.zobj.net/source/apple/391/flag-italy_1f1ee-1f1f9.png";
 }
 
 else if(
 input.includes('こんにちは')
 ){
 language="Japanese";
-flag="🇯🇵";
+flagImg="https://em-content.zobj.net/source/apple/391/flag-japan_1f1ef-1f1f5.png";
 }
 
 else if(
 input.includes('你好')
 ){
 language="Chinese";
-flag="🇨🇳";
+flagImg="https://em-content.zobj.net/source/apple/391/flag-china_1f1e8-1f1f3.png";
 }
 
 else if(
 input.includes('안녕하세요')
 ){
 language="Korean";
-flag="🇰🇷";
+flagImg="https://em-content.zobj.net/source/apple/391/flag-south-korea_1f1f0-1f1f7.png";
 }
 
 else if(
 input.includes('привет')
 ){
 language="Russian";
-flag="🇷🇺";
+flagImg="https://em-content.zobj.net/source/apple/391/flag-russia_1f1f7-1f1fa.png";
 }
 
 detected.innerHTML=`
-<span class="text-7xl">${flag}</span><br>
-${language}
+<div class="flex justify-center mb-4"><img src="${flagImg}" class="h-24 w-24 object-contain" alt="Flag"></div>
+<div class="text-4xl uppercase tracking-tighter">${language}</div>
 `;
 
 }
